@@ -1,9 +1,11 @@
 #include<windows.h>
-#include <stdio.h>
+#include<iostream>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
 #include <math.h>
+
+using namespace std;
 
 typedef struct // structure that holds the information of points
 {
@@ -272,22 +274,20 @@ void init(void)
 }
 int main(int argc, char **argv)
 {
-    printf("Enter Window Coordinates:\n");
-    printf("Please Enter two Points:\n"); // P1(x,y) is the bottom left point for clipping window
-    printf("Enter P1(x,y):\n");
-    scanf("%f", &p1.x);                     // if you don't know what value should be given: enter 200
-    scanf("%f", &p1.y);                     // if you don't know what value should be given: enter 200
-    printf("Enter P2(x,y):\n");             // P2(x,y) is the top right point for clipping window
-    scanf("%f", &p2.x);                     // if you don't know what value should be given: enter 400
-    scanf("%f", &p2.y);                     // if you don't know what value should be given: enter 400
-    printf("\nEnter the no. of vertices:"); // if you don't know what value should be given:enter 3
-    scanf("%d", &n);
+    cout << "Enter the two co-ordinate : " << endl;
+    cout << "Enter the P1(x,y) : " << endl;
+    cin >> p1.x;
+    cin >> p1.y;
+    cout << "Enter the P2(x,y) : " << endl;
+    cin >> p2.x;
+    cin >> p2.y;
+    cout << "Enter the number of vertices : " << endl;
+    cin >> n;
     for (i = 0; i < n; i++)
     {
-        printf("\nEnter V%d(x%d,y%d):\n", i + 1, i + 1, i + 1);
-        scanf("%f", &p[i].x); // if you don't know what value should be given: enter
-        // V1(100, 110), V2(340, 210), V3(300, 380);
-        scanf("%f", &p[i].y);
+        cout << "Enter vertex : ";
+        cin >> p[i].x;
+        cin >> p[i].y;
     }
     p[i].x = p[0].x; // Assign last to first for connected everything
     p[i].y = p[0].y;
@@ -303,3 +303,10 @@ int main(int argc, char **argv)
     glutMainLoop();
     return 0;
 }
+
+// P1(x,y) = 200 , 200
+// P2(x,y) = 400 , 400
+// co-ordinate : 3
+// c1 = 110 , 100
+// c2 = 480 , 280
+// c3 = 480 . 360
