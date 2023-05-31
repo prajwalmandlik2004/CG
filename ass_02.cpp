@@ -1,13 +1,14 @@
-// Problem Statement: Implement DDA and Bresenham line drawing algorithm to draw : 
-// i) Simple Line 
+// Problem Statement: Implement DDA and Bresenham line drawing algorithm to draw :
+// i) Simple Line
 // ii) Dotted Line
-// iii) Dashed Line 
+// iii) Dashed Line
 // iv) Solid line ;
 // using mouse interface Divide the screen in four quadrants with
 // center as (0, 0). The line should work for all the slopes positive as well as negative
 
+#include<windows.h>
 #include <iostream>
-#include <Gl/glut.h>
+#include <GL/glut.h>
 #include <math.h>
 #define ROUND(X) ((int)X + 0.5)
 using namespace std;
@@ -106,7 +107,7 @@ void DDA_dashed(float x1, float y1, float x2, float y2)
     {
         X = X + dx;
         Y = Y + dy;
-        if (count <= 10) // draw for 10 steps
+        if (count < 10) // draw for 10 steps
         {
             glBegin(GL_POINTS);
             glVertex2f(ROUND(X), ROUND(Y));
@@ -205,6 +206,7 @@ void BH_simple(float x1, float y1, float x2, float y2)
     glBegin(GL_POINTS);
     glVertex2f(x1, y1);
     glEnd();
+    glFlush();
     while (x1 < x2)
     {
         x1++;
@@ -221,6 +223,7 @@ void BH_simple(float x1, float y1, float x2, float y2)
         glBegin(GL_POINTS);
         glVertex2f(x1, y1);
         glEnd();
+        glFlush();
     }
 }
 void BH_dashed(float x1, float y1, float x2, float y2)
@@ -236,6 +239,7 @@ void BH_dashed(float x1, float y1, float x2, float y2)
     glBegin(GL_POINTS);
     glVertex2f(x1, y1);
     glEnd();
+    glFlush();
     count = 1;
     while (x1 < x2)
     {
@@ -255,6 +259,7 @@ void BH_dashed(float x1, float y1, float x2, float y2)
             glBegin(GL_POINTS);
             glVertex2f(x1, y1);
             glEnd();
+            glFlush();
             count++;
         }
         if (count >= 6)
@@ -280,6 +285,7 @@ void BH_dotted(float x1, float y1, float x2, float y2)
     glBegin(GL_POINTS);
     glVertex2f(x1, y1);
     glEnd();
+    glFlush();
     count = 1;
     while (x1 < x2)
     {
@@ -299,6 +305,7 @@ void BH_dotted(float x1, float y1, float x2, float y2)
             glBegin(GL_POINTS);
             glVertex2f(x1, y1);
             glEnd();
+            glFlush();
         }
         count++;
     }
@@ -316,6 +323,7 @@ void BH_solid(float x1, float y1, float x2, float y2)
     glBegin(GL_POINTS);
     glVertex2f(x1, y1);
     glEnd();
+    glFlush();
     while (x1 < x2)
     {
         x1++;
@@ -332,6 +340,7 @@ void BH_solid(float x1, float y1, float x2, float y2)
         glBegin(GL_POINTS);
         glVertex2f(x1, y1);
         glEnd();
+        glFlush();
     }
 }
 void menu_dda(int a)
